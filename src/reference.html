@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EX-01 · AstroSphere Studio</title>
+<style>
+:root{color-scheme:light;--ink:#222f2b;--muted:#58665c;--rule:#c9cdc0;--accent:#a64a2a;--paper:#faf9f1}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Segoe UI",sans-serif}
+header{padding:16px max(5vw,24px);background:#243b33;color:#fcfaf0;display:flex;align-items:center;gap:13px;font:24px Georgia,serif}
+.mark{width:26px;height:26px;border:1px solid #c0d5c6;border-radius:50%;position:relative;transform:rotate(-30deg)}
+.mark:after{content:"";position:absolute;inset:8px -1px;border:1px solid #c0d5c6;border-radius:50%}
+main{max-width:1220px;margin:auto;padding:30px 5vw 24px}.kicker,dt,figcaption,h2{font:600 12px/1.5 "Segoe UI",sans-serif;letter-spacing:.09em;text-transform:uppercase}
+.kicker{color:var(--accent)}h1{font:normal clamp(34px,4vw,54px)/1.08 Georgia,serif;letter-spacing:-.035em;margin:7px 0 24px}
+.layout{border-block:1px solid var(--rule);display:grid;grid-template-columns:1.45fr 1fr;align-items:center}
+figure{margin:0;padding:12px 3% 16px 0}svg{display:block;width:100%;max-height:435px}
+figcaption{text-align:center;color:var(--muted);font-size:10px}
+section{border-left:1px solid var(--rule);padding:8px 0 8px 32px}h2{margin:0 0 12px;color:var(--muted)}
+dl{margin:0 0 28px}dl div{display:flex;justify-content:space-between;gap:16px;align-items:baseline;border-bottom:1px solid #ddded2;padding:7px 0}dt{letter-spacing:0;text-transform:none;font-size:14px;font-weight:400}dd{margin:0;font-variant-numeric:tabular-nums}
+.results{display:flex;flex-wrap:wrap;gap:10px 28px;margin:0}.results div{display:block;border:0;padding:0}.results dd{color:#904024;font:30px Georgia,serif}
+footer{display:flex;justify-content:space-between;gap:20px;padding:12px 0;color:var(--muted);font-size:13px}.legend{display:flex;gap:16px;flex-wrap:wrap}.legend span:before{content:"";display:inline-block;width:16px;margin-right:5px;vertical-align:middle;border-top:2px solid var(--line)}
+.reference,.side{fill:none;stroke-linejoin:round;stroke-linecap:round}.horizon{stroke:#347564;stroke-width:1.6}.equator{stroke:#4e728a;stroke-width:1.6}.meridian{stroke:#77786a;stroke-width:1.2}.side{stroke:var(--accent);stroke-width:3}.back{stroke-dasharray:4 5;opacity:.66}
+.vertex circle{fill:var(--accent);stroke:var(--paper);stroke-width:1.6}.cardinal{fill:#47564d}.vertex text,.cardinal text{paint-order:stroke;stroke:var(--paper);stroke-width:3px}.vertex text{font:italic 22px Georgia;fill:#79371f}.cardinal text{font:12px "Segoe UI",sans-serif}
+@media(max-width:700px){.layout{grid-template-columns:1fr}section{border-left:0;border-top:1px solid var(--rule);padding:18px 0}footer{flex-direction:column}.results{gap:28px}figure{padding-right:0}}
+.hit-point{display:none}
+</style></head><body>
+<header><span class="mark" aria-hidden="true"></span>AstroSphere Studio</header>
+<main><div class="kicker">EX-01 · Reference scene</div><h1>The astronomical triangle</h1>
+<div class="layout"><figure>{{diagram}}<figcaption>P · North celestial pole &nbsp; / &nbsp; Z · Zenith &nbsp; / &nbsp; S · Star</figcaption></figure>
+<section aria-label="Reference calculation"><h2>Given coordinates</h2><dl>
+<div><dt>Observer latitude · φ</dt><dd>{{latitude}}° N</dd></div>
+<div><dt>Star declination · δ</dt><dd>+{{declination}}°</dd></div>
+<div><dt>Local hour angle · H</dt><dd>{{hourAngle}}° W</dd></div></dl>
+<h2>Horizon coordinates</h2><dl class="results"><div><dt>Altitude · h</dt><dd>{{altitude}}°</dd></div><div><dt>Azimuth · A</dt><dd>{{azimuth}}°</dd></div></dl>
+<p>Azimuth increases eastward from true north. Hour angle increases westward from the meridian.</p></section></div>
+<footer><div class="legend"><span style="--line:#347564">Horizon</span><span style="--line:#4e728a">Equator</span><span style="--line:#77786a">Meridian</span></div>
+<div>Geometric horizon · No refraction</div></footer></main></body></html>

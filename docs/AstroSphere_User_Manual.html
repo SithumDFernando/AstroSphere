@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AstroSphere Studio — User manual</title>
+<style>
+:root{color-scheme:light;--green:#204637;--ink:#24372d;--muted:#526154;--paper:#fbfaf4;--rule:#ced5c6}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Segoe UI",Arial,sans-serif}
+header{padding:35px max(5vw,24px);background:var(--green);color:#fffdf1}header>div{max-width:1100px;margin:auto}.eyebrow{font:12px Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:#d2dfc5}
+h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:46px;margin:8px 0 12px}h2{font-size:31px;margin:0 0 18px}h3{font-size:23px;margin:24px 0 10px}header p{max-width:720px;margin:0 0 20px}
+a{color:#1c5b42;text-underline-offset:3px}header a{color:#fffdf1}button,.action{font:inherit;border:1px solid currentColor;border-radius:4px;background:transparent;color:inherit;padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-block;margin-right:10px}
+.layout{max-width:1180px;display:grid;grid-template-columns:220px 1fr;gap:45px;margin:auto;padding:34px 24px}nav{align-self:start;position:sticky;top:20px;font-size:14px}nav a{display:block;padding:5px 0;text-decoration:none}nav a:hover{text-decoration:underline}
+main{min-width:0}section{border-bottom:1px solid var(--rule);padding:0 0 30px;margin:0 0 32px}p{margin:10px 0 16px}li{margin:9px 0}ol,ul{padding-left:24px}strong{font-weight:650}code,kbd{font:14px Consolas,monospace;background:#eaf0e3;border-radius:3px;padding:2px 5px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:16px 0 22px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--rule);padding:10px 12px}th{background:#eaf0e2;font-weight:600}
+.note{padding:14px 18px;background:#edf2e7;border-left:3px solid #67845d;margin:18px 0}.note p:last-child{margin-bottom:0}.tip{font-size:14px;color:var(--muted)}figure{margin:22px 0}figure img{display:block;width:100%;border:1px solid var(--rule);border-radius:4px}figcaption{font-size:13px;color:var(--muted);margin-top:7px}
+details{padding:15px;background:#f1eee0;border:1px solid var(--rule);border-radius:4px}summary{cursor:pointer;font-weight:600}footer{font-size:13px;color:var(--muted);padding-bottom:30px}.steps>li{padding-left:3px;margin-bottom:15px}
+@media(max-width:800px){.layout{grid-template-columns:1fr;gap:25px}nav{position:static;display:flex;flex-wrap:wrap;gap:6px 16px}h1{font-size:36px}table{font-size:13px}th,td{padding:8px 5px}}
+@media print{@page{size:A4;margin:16mm}body{font:10pt/1.45 Arial,sans-serif;background:white;color:black}header{padding:0 0 18px;background:white;color:black;border-bottom:2px solid black}header .eyebrow{color:#333}h1{font-size:27pt}h2{font-size:20pt}h3{font-size:14pt}nav,.actions{display:none}.layout{display:block;padding:20px 0}section{margin-bottom:20px;padding-bottom:15px}h2,h3{break-after:avoid}figure,tr,.note,details{break-inside:avoid}figure{margin:14px 0}a{color:black}header p{margin-bottom:0}.note{background:#f2f2f2}figure img{max-height:95mm;object-fit:contain}footer{font-size:9pt}code,kbd{font-size:9pt}}
+</style>
+</head>
+<body>
+<header><div><div class="eyebrow">AstroSphere Studio · MVP · 5 November 2026</div>
+<h1>User manual</h1><p>Build a celestial-sphere scene, construct the astronomical triangle, check your reasoning, and save or print your work. Start with the walkthrough below and use the task guides when you need a particular control.</p>
+<div class="actions"><a class="action" href="../dist/index.html">Open studio</a><button onclick="window.print()">Print / save as PDF</button><a href="#first-exercise">Start the walkthrough ↓</a></div></div></header>
+<div class="layout">
+<nav aria-label="Manual contents">
+<a href="#start">Open the app</a><a href="#first-exercise">Your first exercise</a><a href="#workspace">Find your way around</a><a href="#construction">Build the triangle</a><a href="#solve">Hints and solving</a><a href="#redraw">Redraw on paper</a><a href="#coordinates">Enter your own problem</a><a href="#exercises">Choose another exercise</a><a href="#save">Save and reopen</a><a href="#export">Export a diagram</a><a href="#coach">Coach demonstration</a><a href="#keyboard">Keyboard and display</a><a href="#trouble">Troubleshooting</a><a href="#answers">EX-01 answer check</a>
+</nav>
+<main>
+<section id="start"><h2>Open the app</h2>
+<p>Open your AstroSphere Studio address in Chrome or Edge. For the local development copy, start it from the project folder with <code>npm run dev</code> and open the address printed in the terminal, usually <code>http://127.0.0.1:5173/</code>. Initial project setup requires Node.js 24 or later and <code>npm ci</code>.</p>
+<p>For a portable built copy, open <code>dist/index.html</code> with its accompanying files in the same folder. The studio opens on a page headed <strong>Explore the celestial sphere.</strong></p>
+<div class="note"><strong>If you see {{diagram}} or {{altitude}}</strong><p>You have opened a source template. Open the studio address or the built <code>dist/index.html</code>. The completed static reference is <code>dist/reference.html</code>.</p></div>
+<p>Use <strong>User manual</strong> in the studio’s display bar to open this guide in another tab. Keep that tab open while completing the walkthrough.</p>
+</section>
+<section id="first-exercise"><h2>Your first exercise</h2>
+<p>Use EX-01 to learn the controls. Your task is to find a star’s altitude and azimuth for latitude +30°, declination +20°, and hour angle +45°.</p>
+<ol class="steps">
+<li>On the Studio page, scroll to <strong>Practice library</strong> and choose <strong>EX-01 — Star altitude and azimuth</strong>. This opens the scene directly. To practise entering the same values yourself, choose <strong>Build a problem</strong>, enter the values in the table below, and select <strong>Create scene</strong>.</li>
+<li>Look at the sphere and locate <strong>P</strong>, <strong>Z</strong> and <strong>S</strong>. Use <strong>Select an object</strong> in the right-hand inspector if points overlap. Camera movement changes your view of the scene.</li>
+<li>Choose <strong>Construct triangle</strong> near the workbench heading. The page scrolls to <strong>Triangle studio</strong>. Follow <a href="#construction">the construction instructions</a> to add three vertices, commit three sides, and check four labels.</li>
+<li>Scroll to <strong>Solve and review</strong>. Choose a spherical rule and enter your own altitude and azimuth. Use <strong>Check answer</strong> to receive feedback. <strong>Get hint</strong> supplies the next hint.</li>
+<li>After reviewing the solution, choose <strong>Independent redraw</strong> and reconstruct the scene on paper.</li>
+<li>Enter a <strong>Scenario name</strong> in the save panel and choose <strong>Save locally</strong>. Use <strong>Export scenario JSON</strong> to keep a shareable backup.</li>
+</ol>
+<table><thead><tr><th>Builder field</th><th>Enter</th></tr></thead><tbody>
+<tr><td>Problem type</td><td>Altitude and azimuth</td></tr><tr><td>Observer latitude φ</td><td><code>30</code></td></tr><tr><td>Star name</td><td><code>S</code></td></tr><tr><td>Declination δ</td><td><code>20</code></td></tr><tr><td>Local hour angle H</td><td><code>45</code></td></tr><tr><td>Find</td><td>Altitude and azimuth</td></tr></tbody></table>
+<figure><img src="manual-images/builder.png" alt="EX-01 builder with latitude 30, declination 20 and hour angle 45, and a preview beside the form."><figcaption>The preview should say observer at 30° N, star S at declination 20°, and local hour angle 45° W.</figcaption></figure>
+<p class="tip">Enter plain numbers in the coordinate boxes. The app supplies degree symbols and direction labels.</p>
+</section>
+<section id="workspace"><h2>Find your way around</h2>
+<figure><img src="manual-images/workbench.png" alt="Workbench with givens and layer checkboxes on the left, an interactive celestial sphere in the centre, and the object inspector and practice controls on the right."><figcaption>Begin with the central sphere. The controls below it adjust H; scrolling farther down reveals saving, solving and triangle construction.</figcaption></figure>
+<table><thead><tr><th>Area</th><th>Use it for</th></tr></thead><tbody>
+<tr><td>Left — Given coordinates and Visible layers</td><td>Review φ, δ and H. Show or hide the horizon, equator, meridian, poles, zenith, cardinal points, hour circle and labels.</td></tr>
+<tr><td>Centre — Interactive sphere</td><td>Orbit and zoom; select reference objects; switch to a canonical view.</td></tr>
+<tr><td>Right — Object inspector and Practice</td><td>Select an object from a list, read its meaning, see whether the star is above the horizon, and explicitly reveal results.</td></tr>
+<tr><td>Below the sphere — Hour-angle slider</td><td>Move H to explore the star’s daily path. In meridian culmination it stays fixed at 0°.</td></tr>
+<tr><td>Save panel</td><td>Name a scenario, save it, export JSON, reset the question or open diagram export.</td></tr>
+<tr><td>Solve and review</td><td>Choose a rule, request hints, check answers, view steps or enter redraw mode.</td></tr>
+<tr><td>Triangle studio</td><td>Add vertices, sides and labels while viewing the sphere sketch and isolated triangle. Select Construct triangle to open this section.</td></tr>
+</tbody></table>
+<h3>Move the camera</h3>
+<p>Drag empty space to orbit, scroll to zoom, and Shift-drag or right-drag to pan. Use the + and − buttons for zoom. <strong>Reset camera</strong> returns to the default oblique view.</p>
+<p>The <strong>View</strong> menu offers <strong>Horizon-level</strong>, <strong>Equatorial</strong> and <strong>Pole-centered</strong>. <strong>Triangle-normal</strong> appears for a valid triangle. <strong>Free orbit</strong> identifies a manually moved camera.</p>
+<p>Dashed arc portions pass behind the sphere. <strong>Opaque sphere</strong> hides rear geometry. If a point is hard to click, select it from the inspector list.</p>
+<h3>Recognize the symbols</h3>
+<p><strong>P</strong> is the north celestial pole, <strong>P′</strong> the south celestial pole, <strong>Z</strong> the point directly overhead, and <strong>Z′</strong> the point directly below. The italic <strong>S</strong> marks the star. The smaller horizon letters N, E, S and W mark compass directions.</p>
+<p>The horizon is perpendicular to the observer’s vertical. The celestial equator is perpendicular to the pole axis. The local meridian passes through the poles and zenith.</p>
+</section>
+<section id="construction"><h2>Build the P–Z–S triangle</h2>
+<p>Choose <strong>Construct triangle</strong>. For the first attempt, use the P, Z and S buttons inside Triangle studio. These work even when objects overlap on the sphere.</p>
+<h3>1. Add the three vertices</h3>
+<ol><li>Set <strong>Construction tool</strong> to <strong>Vertices</strong>.</li><li>Choose <strong>P</strong>, then <strong>Add vertex</strong>.</li><li>Choose <strong>Z</strong>, then <strong>Add vertex</strong>.</li><li>Choose <strong>S</strong>, then <strong>Add vertex</strong>.</li></ol>
+<p>Check that the status line lists <strong>Vertices P, Z, S</strong>. Choosing a point selects a candidate; the Add vertex button commits it.</p>
+<h3>2. Commit the three sides</h3>
+<ol><li>Set <strong>Construction tool</strong> to <strong>Sides</strong>. Keep <strong>Path</strong> set to <strong>Minor great-circle arc</strong>.</li><li>Choose <strong>P</strong> and then <strong>Z</strong>. A dashed preview appears. Choose <strong>Commit side PZ</strong>.</li><li>Choose <strong>P</strong> and then <strong>S</strong>. Choose <strong>Commit side PS</strong>.</li><li>Choose <strong>Z</strong> and then <strong>S</strong>. Choose <strong>Commit side ZS</strong>.</li></ol>
+<p>A great circle is the intersection of the sphere with a plane through its centre. The minor arc is the shorter route along that circle between two endpoints. A declination parallel generally follows a small circle, so it cannot supply the required triangle side.</p>
+<figure><img src="manual-images/triangle.png" alt="Triangle studio after adding P, Z and S and committing PZ, PS and ZS, with a sphere sketch and a fitted isolated triangle."><figcaption>Your constructed sides appear in all three views. Choose Inspect when you want selection without adding more geometry.</figcaption></figure>
+<h3>3. Assign the angular relations</h3>
+<p>Set <strong>Construction tool</strong> to <strong>Labels</strong>. For each row below, select the target button, choose its <strong>Angular relation</strong>, then choose <strong>Check label</strong>.</p>
+<table><thead><tr><th>Target button</th><th>Angular relation</th><th>Reason</th></tr></thead><tbody>
+<tr><td>PZ</td><td>90° − φ</td><td>Pole-to-zenith distance complements observer latitude.</td></tr>
+<tr><td>PS</td><td>90° − δ</td><td>Polar distance complements declination.</td></tr>
+<tr><td>ZS</td><td>90° − h</td><td>Zenith distance complements altitude.</td></tr>
+<tr><td>P</td><td>|H| (principal angle)</td><td>The included angle between PZ and PS comes from local hour angle. Both sides must already exist.</td></tr>
+</tbody></table>
+<p>For H outside the principal range, use the equivalent interior angle from 0° to 180°. Keep the east/west sign of H for azimuth reasoning.</p>
+<h3>Correct a construction</h3>
+<p><strong>Undo construction</strong> reverses the latest vertex, side or checked label. <strong>Redo construction</strong> restores it. Press <kbd>Escape</kbd> to discard unfinished endpoint choices and return to Inspect. Choose <strong>Enlarge diagrams</strong> to stack larger drawings vertically.</p>
+<p>Select a side in the interactive sphere, the sketch or the isolated triangle to highlight the corresponding side across the views. Measurements refer to spherical arcs and angles; their screen appearance depends on the projection.</p>
+</section>
+<section id="solve"><h2>Use hints and check your solution</h2>
+<p>Scroll to <strong>Solve and review</strong>. Begin by selecting <strong>Cosine rule for sides</strong> in Spherical rule, then choose <strong>Check rule</strong>.</p>
+<table><thead><tr><th>Control</th><th>What happens</th></tr></thead><tbody>
+<tr><td>Get hint</td><td>Reveals one more of three graduated hints. Hide hints collapses their text. The help count records the requested hints for this session.</td></tr>
+<tr><td>Show next solution step</td><td>Reveals the next line of the worked procedure.</td></tr>
+<tr><td>Show full solution</td><td>Enters Demonstrate mode and displays the complete worked procedure. A valid triangle receives a completed geometry overlay.</td></tr>
+<tr><td>Hide solution and return to practice</td><td>Returns to Independent mode and restores your own construction.</td></tr>
+<tr><td>Reveal results in the inspector</td><td>Shows numerical horizon coordinates separately from the worked procedure.</td></tr>
+</tbody></table>
+<p>For altitude and azimuth questions, select <strong>Angle units</strong>, enter <strong>Your altitude</strong> and <strong>Your azimuth</strong>, then choose <strong>Check answer</strong>. Numeric feedback uses a 0.01° tolerance after unit conversion. Azimuth checks account for the 0°/360° wrap.</p>
+<p>At zenith, nadir or an unorientated geographic pole, enter <code>undefined</code> for azimuth. In a rising/setting exercise, select a <strong>Daily visibility</strong> classification instead.</p>
+<p>Changing coordinates flags existing guesses for review. Recheck against the displayed givens. Current hint history, guesses and solution-step progress last for the active session.</p>
+</section>
+<section id="redraw"><h2>Redraw on paper</h2>
+<ol><li>After reviewing your reasoning, choose <strong>Independent redraw</strong>.</li><li>Using the givens, draw the horizon, celestial equator, pole, zenith and star on paper. Add the relevant great-circle arcs.</li><li>Write the side relations and explain the hour-angle sign and azimuth quadrant.</li><li>Choose <strong>Return to practice</strong> to compare against your construction.</li></ol>
+<p>Redraw hides derived construction overlays, checked diagram measurements and the result reveal control. Your earlier construction remains available when you return.</p>
+</section>
+<section id="coordinates"><h2>Enter your own problem</h2>
+<p>Choose <strong>Problem builder</strong> in the top navigation for a new scenario. Use <strong>Edit problem</strong> from the workbench to modify the current one, then choose <strong>Apply changes</strong>.</p>
+<table><thead><tr><th>Quantity</th><th>Convention and example</th></tr></thead><tbody>
+<tr><td>Latitude φ</td><td>−90° to +90°. North is positive. Enter <code>-30</code> for 30° S.</td></tr>
+<tr><td>Declination δ</td><td>−90° to +90°. North of the celestial equator is positive.</td></tr>
+<tr><td>Hour angle H</td><td>West is positive. Enter <code>45</code> for 45° W or <code>-45</code> for 45° E. Full turns are normalized; 405° becomes 45° W.</td></tr>
+<tr><td>Altitude h</td><td>Height above the geometric horizon, from −90° to +90°. A negative value places the star below the horizon.</td></tr>
+<tr><td>Azimuth A</td><td>North 0°, east 90°, south 180°, west 270°.</td></tr>
+</tbody></table>
+<p>If a problem supplies H in hours, convert using 15° per hour before entering it. For example, 3 hours west becomes +45°.</p>
+<p>Expand <strong>Question text and notes</strong> to include the original wording or teaching notes. Review <strong>Problem preview</strong> before creating the scene.</p>
+<p>The current model uses fixed-star directions, a geometric horizon and idealized spherical geometry. H controls the local angular position. Real dates, UTC, right ascension, refraction and moving solar-system objects require additional modelling.</p>
+</section>
+<section id="exercises"><h2>Choose another exercise</h2>
+<p>The three example cards open a prefilled builder. The five Practice library entries open scenes directly.</p>
+<table><thead><tr><th>Exercise</th><th>What to investigate</th></tr></thead><tbody>
+<tr><td>EX-01 — Star altitude and azimuth</td><td>Complete the standard P–Z–S construction and check the quadrant.</td></tr>
+<tr><td>EX-02 — Meridian culmination</td><td>Inspect H = 0°. Vertices lie on one great circle, so the app explains the collapsed triangle. Use zenith distance or the coordinate relation to find altitude.</td></tr>
+<tr><td>EX-03 — Equatorial observer</td><td>At φ = δ = 0°, compare H = +90° with −90°. Observe west and east horizon positions.</td></tr>
+<tr><td>EX-04 — Circumpolar star</td><td>Move H through the daily path and classify visibility from its highest and lowest altitudes. H starts at upper transit.</td></tr>
+<tr><td>EX-05 — Observer at the pole</td><td>P and Z coincide. Altitude remains meaningful while the usual triangle collapses. A geographic azimuth needs an adopted orientation.</td></tr>
+</tbody></table>
+<p>Rising and setting labels describe visibility over a daily rotation. A zero minimum or maximum can represent a tangency. A real clock time requires a time model.</p>
+</section>
+<section id="save"><h2>Save, reopen and share a scenario</h2>
+<h3>Save in this browser</h3>
+<ol><li>Scroll to the panel containing <strong>Scenario name</strong>.</li><li>Enter a recognizable name, then choose <strong>Save locally</strong>. Reusing a saved name asks whether to replace it.</li><li>Later, open <strong>Saved scenarios and import</strong> near the top of the app. Choose <strong>Open</strong> beside your saved name.</li></ol>
+<p>A saved scenario retains inputs, the original question baseline, layers, camera position, construction, learning mode and result visibility. Choose the desired learning mode before saving. Hint history, guesses and undo history belong to the active session.</p>
+<h3>Share or back up a file</h3>
+<ol><li>Choose <strong>Export scenario JSON</strong>. Your browser downloads an AstroSphere scenario file.</li><li>On the receiving browser, open <strong>Saved scenarios and import</strong> and select the file with <strong>Import scenario JSON</strong>.</li><li>Review the preview, then choose <strong>Open imported scenario</strong>. <strong>Cancel import</strong> dismisses the preview. Choose Save locally afterwards if you want it in that browser’s library.</li></ol>
+<p>Local saves belong to the current browser and address. Switching between a local file, localhost and a hosted site gives you separate libraries. Keep exported JSON files for backup.</p>
+<table><thead><tr><th>Control</th><th>Scope</th></tr></thead><tbody>
+<tr><td>Reset camera</td><td>Restores the default camera view.</td></tr><tr><td>Undo / Redo at the workbench heading</td><td>Reverses or reapplies coordinate edits.</td></tr><tr><td>Undo construction / Redo construction</td><td>Reverses or reapplies triangle work.</td></tr><tr><td>Reset to question</td><td>After confirmation, restores baseline question inputs and Independent mode. Use construction undo controls for triangle edits.</td></tr><tr><td>Delete beside a saved entry</td><td>After confirmation, removes that browser-library entry.</td></tr></tbody></table>
+<p class="tip">Save or export before opening another exercise or refreshing the page.</p>
+</section>
+<section id="export"><h2>Export a diagram</h2>
+<ol><li>Complete your own construction, or choose <strong>Show full solution</strong> for a completed demonstration.</li><li>Choose <strong>Export diagrams</strong> in the save panel.</li><li>Select <strong>Full celestial sphere</strong> or <strong>Isolated triangle</strong> from Diagram.</li><li>Choose Grayscale print, Transparent background, Conventions note and Diagram labels as needed.</li><li>Inspect the preview. Use <strong>Download SVG</strong> for scalable vector output or <strong>Download PNG</strong> for a raster image. PNG resolution choices range from 800 × 800 to 3200 × 3200 pixels.</li></ol>
+<p>The full sphere uses the current camera orientation fitted into the page, with checked measurements in a legend below it. The isolated triangle uses its own fitted view. Downloaded diagrams follow the current construction and learning mode. In Redraw mode, derived construction is concealed.</p>
+<p>If the preview has no triangle, return to construction or enter Demonstrate mode. A collapsed triangle can be exported as a full-sphere sketch.</p>
+</section>
+<section id="coach"><h2>Prepare a coach demonstration</h2>
+<ol><li>Open a preset or enter your scenario in the builder.</li><li>Choose the camera orientation and visible layers that support your explanation.</li><li>Use <strong>Show next solution step</strong> to reveal the derivation gradually. Use the layer checkboxes or construction tools to reveal geometry.</li><li>Choose <strong>Show full solution</strong> when you want the complete result. Hide demonstration notes collapses the written steps.</li><li>Save the intended starting state and export its JSON file. Reopen the file before presenting to confirm it starts as intended.</li><li>Export sphere and triangle diagrams for the handout.</li></ol>
+</section>
+<section id="keyboard"><h2>Keyboard, display and offline access</h2>
+<p>Use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to move between controls. Use <kbd>Enter</kbd> to activate buttons, arrow keys in lists, and <kbd>Space</kbd> on checkboxes. The object inspector and triangle buttons provide alternatives to clicking the drawing.</p>
+<p>With the sphere focused, arrow keys pan and <kbd>Shift</kbd> + arrow keys orbit. Press <kbd>Escape</kbd> to leave an unfinished construction. Use the visible + and − controls for zoom.</p>
+<p>Choose <strong>High contrast</strong> or <strong>Grayscale</strong> from <strong>Display</strong> near the top of the app.</p>
+<p>When the display bar says <strong>Ready for offline use in this browser</strong>, the app’s core files are cached. Keep JSON backups, since clearing browser data can remove both cache and local saves. For portable use, keep the entire built app folder together.</p>
+<p>This manual has a <strong>Print / save as PDF</strong> control at the top. Use your browser’s print destination to create a PDF copy.</p>
+</section>
+<section id="trouble"><h2>When you get stuck</h2>
+<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody>
+<tr><td>“Add vertex” is disabled</td><td>Choose P, Z or S first. Each vertex is added once. Check the Vertices status line.</td></tr>
+<tr><td>“Commit side” is disabled</td><td>Add both endpoint vertices, then choose two distinct endpoints in Sides mode. An existing side is already committed.</td></tr>
+<tr><td>“Check label” is disabled</td><td>Select a committed side and a relation. For angle P, commit PZ and PS first. A checked label is already recorded.</td></tr>
+<tr><td>Clicking adds an endpoint when you only want to inspect</td><td>Set Construction tool to Inspect, or press Escape.</td></tr>
+<tr><td>The triangle studio or solving controls seem missing</td><td>Scroll below the main sphere. Construct triangle opens and scrolls to the studio.</td></tr>
+<tr><td>A point is hidden or overlaps another</td><td>Use Select an object or the P/Z/S buttons. Try Oblique view, Reset camera, or turn off Opaque sphere.</td></tr>
+<tr><td>“Coincident”, “antipodal”, or “one great circle”</td><td>The usual triangle is degenerate or an arc is nonunique. Read the explanation. Continue inspecting coordinates, or change the problem values for a regular triangle.</td></tr>
+<tr><td>Azimuth is undefined</td><td>At zenith/nadir there is no unique bearing. At a geographic pole an orientation convention is needed. Enter undefined in the azimuth answer box.</td></tr>
+<tr><td>“Check the quadrant”</td><td>Review H’s east/west sign. Azimuth runs north → east → south → west. Use atan2(E, N).</td></tr>
+<tr><td>An answer is flagged after editing</td><td>Recalculate for the current coordinates and select Check answer.</td></tr>
+<tr><td>Saved scenario is missing</td><td>Return to the same browser and app address, or import your JSON backup.</td></tr>
+<tr><td>Import rejects a file</td><td>Select an AstroSphere version 1 scenario JSON smaller than 1 MB. Re-export it from a working scene if the file was edited or damaged.</td></tr>
+<tr><td>The export is empty or missing labels</td><td>Check your construction, learning mode and Diagram labels setting. Use the preview before downloading.</td></tr>
+</tbody></table>
+</section>
+<section id="answers"><h2>EX-01 answer check</h2>
+<details><summary>Show the walkthrough’s numerical answers</summary>
+<table><thead><tr><th>Quantity</th><th>Expected result</th></tr></thead><tbody>
+<tr><td>PZ</td><td>60°</td></tr><tr><td>PS</td><td>70°</td></tr><tr><td>ZS</td><td>41.71604°</td></tr><tr><td>∠ZPS</td><td>45°</td></tr><tr><td>Altitude h</td><td>48.28396°</td></tr><tr><td>Azimuth A</td><td>266.89593°</td></tr></tbody></table>
+<p>With degrees selected, <code>48.28</code> and <code>266.90</code> pass the numerical check. The azimuth places the star slightly south of west.</p>
+</details>
+</section>
+<footer>AstroSphere Studio · Current MVP controls · Manual updated 5 November 2026</footer>
+</main></div></body></html>
+
